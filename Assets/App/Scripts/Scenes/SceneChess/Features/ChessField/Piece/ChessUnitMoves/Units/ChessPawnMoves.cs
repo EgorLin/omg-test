@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUnitMoves.Units
 {
-    public class ChessPawnMoves : ChessUnitMoves
+    public class ChessPawnMoves : ChessUnitMoves, IChessUnitMovesProvider
     {
         private readonly List<ChessUnitMoveDirection> _directions;
         private readonly int _countSteps = 1;

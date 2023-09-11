@@ -43,8 +43,7 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
         }
 
         protected Dictionary<ChessUnitMoveDirection, List<Vector2Int>> CreateMovesForUnit(
-            List<ChessUnitMoveDirection> directions, int countStepsPerDirection, bool isKnight = false
-        )
+            List<ChessUnitMoveDirection> directions, int countStepsPerDirection, bool isKnight = false)
         {
             var unitMoves = new Dictionary<ChessUnitMoveDirection, List<Vector2Int>>();
 
@@ -59,6 +58,7 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
                     unitMoves.Add(direction, CreateKnightDirectionMove(direction));
                 }
             }
+
             return unitMoves;
         }
 

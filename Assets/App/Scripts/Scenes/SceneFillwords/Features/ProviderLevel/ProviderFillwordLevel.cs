@@ -15,24 +15,18 @@ namespace App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel
             {
                 var wordAndLettersPairsIndexes = GetWordsAndLettersIndexes(index, FillwordsResourcePaths.levels);
 
-                int totalCountLetters = 0;
-                foreach (var word in wordAndLettersPairsIndexes)
-                {
-                    totalCountLetters += word.Value.Length;
-                }
+                int totalCountLetters = CountTotalLetters(wordAndLettersPairsIndexes);
                 var vectorSize = Convert.ToInt32(Math.Sqrt(totalCountLetters));
                 var indexAndLetterPairs = GetIndexAndLetterPairs(wordAndLettersPairsIndexes, FillwordsResourcePaths.wordsList, vectorSize * vectorSize);
 
                 var gridSize = new Vector2Int(vectorSize, vectorSize);
-
-                var gridFillWords = new GridFillWords(gridSize);
-                FillGrid(indexAndLetterPairs, gridFillWords);
+                var gridFillWords = CreateGrid(gridSize, indexAndLetterPairs);
 
                 return gridFillWords;
             }
             catch (Exception)
             {
-                Debug.Log("Failed to load " + index + " level");
+                Debug.Log($"Failed to load {index} level");
                 return null;
             }
         }
@@ -59,49 +53,89 @@ namespace App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel
             return wordsAndLettersPairIndexes;
         }
 
-        private Dictionary<int, char> GetIndexAndLetterPairs(Dictionary<int, int[]> wordAndLettersPairsIndexes, string path, int countCells)
+        private int CountTotalLetters(Dictionary<int, int[]> wordAndLettersPairsIndexes)
+        {
+            int totalCountLetters = 0;
+            foreach (var word in wordAndLettersPairsIndexes.Values)
+            {
+                totalCountLetters += word.Length;
+            }
+            return totalCountLetters;
+        }
+
+        private Dictionary<int, char> GetIndexAndLetterPairs(Dictionary<int, int[]> wordAndLetterPairsIndexes, string path, int countCells)
         {
             var indexAndLetterPairs = new Dictionary<int, char>();
 
             var wordListParsed = FileManager.GetFile<TextAsset>(path).text.Split('\n');
-            foreach (KeyValuePair<int, int[]> wordAndLettersPair in wordAndLettersPairsIndexes)
+            foreach ((int wordIndex, int[] letterIndexList) in wordAndLetterPairsIndexes)
             {
-                if (wordAndLettersPair.Key >= wordListParsed.Length)
-                    throw new Exception("Index of looking for word is greater than list of words");
+                ValidateWordIndex(wordIndex, wordListParsed);
 
-                string originalWord = wordListParsed[wordAndLettersPair.Key].Trim();
-                if (originalWord.Length != wordAndLettersPair.Value.Length)
-                    throw new Exception("Count of indexes and word length are not equal");
+                string originalWord = wordListParsed[wordIndex].Trim();
+                ValidateWordLength(originalWord.Length, letterIndexList.Length);
 
-                for (int i = 0; i < wordAndLettersPair.Value.Length; i++)
+                for (int i = 0; i < letterIndexList.Length; i++)
                 {
-                    var indexPositionInGrid = wordAndLettersPair.Value[i];
-                    if (indexPositionInGrid >= countCells)
-                        throw new Exception("The index of cell for letter is greater than the count of cells");
+                    var indexPositionInGrid = letterIndexList[i];
+                    ValidateCellIndex(indexPositionInGrid, countCells);
+
                     if (!indexAndLetterPairs.TryAdd(indexPositionInGrid, originalWord[i]))
                         throw new Exception("The index of position already exists");
                 }
             }
 
-            var areLettersAndCellsEqual = countCells == indexAndLetterPairs.Count;
-            if (!areLettersAndCellsEqual)
-                throw new Exception("Number of cells are not equal to number of letters");
+            ValidateLetterAndCellCount(countCells, indexAndLetterPairs.Count);
 
             return indexAndLetterPairs;
         }
 
-        private GridFillWords FillGrid(Dictionary<int, char> indexAndLetterPairs, GridFillWords grid)
+        private GridFillWords CreateGrid(Vector2Int gridSize, Dictionary<int, char> indexAndLetterPairs)
         {
+            var gridFillWords = new GridFillWords(gridSize);
             var currentCellNumber = 0;
-            for (var i = 0; i < grid.Size.x; i++)
+
+            for (var i = 0; i < gridSize.x; i++)
             {
-                for (var j = 0; j < grid.Size.y; j++)
+                for (var j = 0; j < gridSize.y; j++)
                 {
                     var c = new CharGridModel(indexAndLetterPairs[currentCellNumber++]);
-                    grid.Set(i, j, c);
+                    gridFillWords.Set(i, j, c);
                 }
             }
-            return grid;
+            return gridFillWords;
+        }
+
+        private void ValidateWordIndex(int wordIndex, string[] wordListParsed)
+        {
+            if (wordIndex >= wordListParsed.Length)
+            {
+                throw new Exception("Index of looking for word is greater than list of words");
+            }
+        }
+
+        private void ValidateWordLength(int originalWordLength, int letterIndexListLength)
+        {
+            if (originalWordLength != letterIndexListLength)
+            {
+                throw new Exception("Count of indexes and word length are not equal");
+            }
+        }
+
+        private void ValidateCellIndex(int indexPositionInGrid, int countCells)
+        {
+            if (indexPositionInGrid >= countCells)
+            {
+                throw new Exception("The index of cell for letter is greater than the count of cells");
+            }
+        }
+
+        private void ValidateLetterAndCellCount(int countCells, int letterAndCellCount)
+        {
+            if (countCells != letterAndCellCount)
+            {
+                throw new Exception("Number of cells are not equal to number of letters");
+            }
         }
     }
 }

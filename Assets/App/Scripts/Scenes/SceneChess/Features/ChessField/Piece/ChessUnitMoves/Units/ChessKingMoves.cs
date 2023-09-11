@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUnitMoves.Units
 {
-    public class ChessKingMoves : ChessUnitMoves
+    public class ChessKingMoves : ChessUnitMoves, IChessUnitMovesProvider
     {
         private readonly List<ChessUnitMoveDirection> _directions = new()
             {

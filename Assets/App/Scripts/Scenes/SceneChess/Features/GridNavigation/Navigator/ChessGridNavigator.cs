@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Scenes.SceneChess.Features.ChessField.GridMatrix;
+using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
 using Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUnitMoves;
 using Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
@@ -15,7 +16,10 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
             try
             {
                 ChessUnitMoves.Initialize(grid.Size.x);
-                var currentPiece = grid.Get(from).PieceModel;
+
+                var currentPiece = grid.Get(from)?.PieceModel;
+                ValidateCurrentPiece(currentPiece);
+
                 var unitMoves = new ChessUnitMoves().Create(currentPiece.PieceType, currentPiece.Color);
 
                 var path = BFS(unitMoves, from, to, grid);
@@ -31,9 +35,7 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
 
         private bool IsInsideGrid(Vector2Int pos, Vector2Int gridSize)
         {
-            if (pos.x >= 0 && pos.x < gridSize.x && pos.y >= 0 && pos.y < gridSize.y) return true;
-
-            return false;
+            return pos.x >= 0 && pos.x < gridSize.x && pos.y >= 0 && pos.y < gridSize.y;
         }
 
         private bool[,] InitVisitedGrid(Vector2Int size)
@@ -66,12 +68,12 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
             {
                 var currentPos = queue.Dequeue();
 
-                if (currentPos.x == destination.x && currentPos.y == destination.y)
+                if (currentPos == destination)
                 {
                     return GetBacktrace(parentRecords, start, destination);
                 }
 
-                foreach ((ChessUnitMoveDirection direction, List<Vector2Int> moves) in unitMoves)
+                foreach (var (direction, moves) in unitMoves)
                 {
                     foreach (var move in moves)
                     {
@@ -111,13 +113,21 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
             {
                 var parent = parentConnections.GetValueOrDefault(lastElement, new Vector2Int());
                 path.Add(parent);
-                lastElement = path[path.Count - 1];
+                lastElement = path[^1];
             }
 
             path.Remove(start);
             path.Reverse();
 
             return path;
+        }
+
+        private void ValidateCurrentPiece(ChessPieceModel currentPiece)
+        {
+            if (currentPiece == null)
+            {
+                throw new Exception("No piece found at the starting position.");
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace App.Scripts.Libs.FileManager
 {
     public static class FileManager
     {
-        private static Dictionary<string, Object> _fileAndDataPairs = new Dictionary<string, Object>();
+        private static readonly Dictionary<string, Object> _fileAndDataPairs = new();
 
         public static T GetFile<T>(string path) where T : Object
         {

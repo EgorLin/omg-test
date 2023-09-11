@@ -11,14 +11,14 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
         {
             try
             {
-                var model = new LevelModel
+                var levelModel = new LevelModel
                 {
                     LevelNumber = levelNumber,
                     Words = value.words,
-                    InputChars = BuildListChars(value.words)
+                    InputChars = BuildListOfChars(value.words)
                 };
 
-                return model;
+                return levelModel;
             }
             catch (Exception e)
             {
@@ -27,64 +27,68 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
             }
         }
 
-        private List<char> BuildListChars(List<string> words)
+        private List<char> BuildListOfChars(List<string> words)
         {
-            var storeDict = new Dictionary<char, int>();
-            words.ForEach(word =>
+            var commonCharFrequencyDictionary = new Dictionary<char, int>();
+
+            foreach (var word in words)
             {
-                var tempDict = GetLettersFromWord(word);
+                var letterFrequencyDict = GetLetterFrequencyFromWord(word);
+                AddLetterFrequencies(letterFrequencyDict, commonCharFrequencyDictionary);
+            }
 
-                AddLetters(tempDict, storeDict);
-            });
+            var listOfChars = GetListOfChars(commonCharFrequencyDictionary);
 
-            var listChars = GetListChars(storeDict);
-
-            return listChars;
+            return listOfChars;
         }
 
-        private Dictionary<char, int> GetLettersFromWord(string word)
+        private Dictionary<char, int> GetLetterFrequencyFromWord(string word)
         {
-            var tempDict = new Dictionary<char, int>();
+            var letterFrequencyDict = new Dictionary<char, int>();
+
             foreach (var letter in word)
             {
-                if (tempDict.ContainsKey(letter))
+                if (letterFrequencyDict.ContainsKey(letter))
                 {
-                    tempDict[letter] += 1;
+                    letterFrequencyDict[letter] += 1;
                 }
                 else
                 {
-                    tempDict.Add(letter, 1);
+                    letterFrequencyDict.Add(letter, 1);
                 }
             }
-            return tempDict;
+
+            return letterFrequencyDict;
         }
 
-        private void AddLetters(Dictionary<char, int> from, Dictionary<char, int> to)
+        private void AddLetterFrequencies(Dictionary<char, int> from, Dictionary<char, int> to)
         {
-            foreach ((char letter, int countLetter) in from)
+            foreach (var (letter, frequency) in from)
             {
                 if (!to.ContainsKey(letter))
                 {
-                    to.Add(letter, countLetter);
+                    to.Add(letter, frequency);
                 }
-                else if (countLetter > to[letter])
+                else if (frequency > to[letter])
                 {
-                    to[letter] = countLetter;
+                    to[letter] = frequency;
                 }
             }
         }
 
-        private List<char> GetListChars(Dictionary<char, int> dictionary)
+        private List<char> GetListOfChars(Dictionary<char, int> dictionary)
         {
-            var listChars = new List<char>();
-            foreach ((char letter, int countLetter) in dictionary)
+            var listOfChars = new List<char>();
+
+            foreach (var (letter, frequency) in dictionary)
             {
-                for (var i = 0; i < countLetter; i++)
+                for (var i = 0; i < frequency; i++)
                 {
-                    listChars.Add(letter);
+                    listOfChars.Add(letter);
                 }
             }
-            return listChars;
+
+            return listOfChars;
         }
     }
 }
