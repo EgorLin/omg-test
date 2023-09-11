@@ -1,5 +1,5 @@
-using System;
 using App.Scripts.Libs.BaseView;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;

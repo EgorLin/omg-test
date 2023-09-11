@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using App.Scripts.Libs.TweenHelper;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewLetter;
 using DG.Tweening;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewCharInput.Animator

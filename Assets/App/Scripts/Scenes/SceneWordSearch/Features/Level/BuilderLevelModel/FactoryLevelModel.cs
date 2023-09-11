@@ -1,7 +1,7 @@
-using System;
-using System.Collections.Generic;
 using App.Scripts.Libs.Factory;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.Models.Level;
+using System;
+using System.Collections.Generic;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
 {
@@ -14,7 +14,6 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
                 var model = new LevelModel
                 {
                     LevelNumber = levelNumber,
-
                     Words = value.words,
                     InputChars = BuildListChars(value.words)
                 };
@@ -23,7 +22,7 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
             }
             catch (Exception e)
             {
-                UnityEngine.Debug.Log(e.Message);
+                UnityEngine.Debug.LogError(e.Message);
                 return null;
             }
         }

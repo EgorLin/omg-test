@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using App.Scripts.Infrastructure.GameCore.States.SetupState;
+﻿using App.Scripts.Infrastructure.GameCore.States.SetupState;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.View.ViewField;
 using App.Scripts.Scenes.SceneChess.Features.FieldCamera.ViewCamera;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.States.SetupLevel

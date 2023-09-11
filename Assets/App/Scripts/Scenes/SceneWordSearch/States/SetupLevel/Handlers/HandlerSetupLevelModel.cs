@@ -1,10 +1,11 @@
-using System.Threading.Tasks;
 using App.Scripts.Infrastructure.GameCore.States.SetupState;
 using App.Scripts.Infrastructure.LevelSelection;
 using App.Scripts.Libs.Factory;
+using App.Scripts.Libs.FileManager;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel.ProviderWordLevel;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.LevelContainer;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.Models.Level;
+using System.Threading.Tasks;
 
 namespace App.Scripts.Scenes.SceneWordSearch.States.SetupLevel.Handlers
 {
@@ -28,6 +29,7 @@ namespace App.Scripts.Scenes.SceneWordSearch.States.SetupLevel.Handlers
 
         public Task Process()
         {
+            FileManager.ClearCache();
             var levelInfo = _providerWordLevel.LoadLevelData(_serviceLevelSelection.CurrentLevelIndex);
 
             var levelModel = _factoryLevelModel.Create(levelInfo, _serviceLevelSelection.CurrentLevelIndex);

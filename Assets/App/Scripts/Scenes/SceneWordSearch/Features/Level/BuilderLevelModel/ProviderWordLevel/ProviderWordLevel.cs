@@ -1,6 +1,7 @@
-using System;
+using App.Scripts.Libs.FileManager;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.Models.Level;
-using Assets.App.Scripts.Consts.WordSearch;
+using Assets.App.Scripts.Scenes.SceneWordSearch.Consts;
+using System;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel.ProviderWordLevel
@@ -11,10 +12,9 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel.Pr
         {
             try
             {
-                var levelInfo = GetLevelInfo(WordSearchResourcePaths.GetLevelByIndex(levelIndex));
-
-                return levelInfo;
-            } catch (Exception)
+                return GetLevelInfo(WordSearchResourcePaths.GetLevelByIndex(levelIndex));
+            }
+            catch (Exception)
             {
                 return null;
             }
@@ -22,7 +22,7 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel.Pr
 
         private LevelInfo GetLevelInfo(string path)
         {
-            var json = Resources.Load<TextAsset>(path).text;
+            var json = FileManager.GetFile<TextAsset>(path).text;
 
             var levelInfo = JsonUtility.FromJson<LevelInfo>(json);
 

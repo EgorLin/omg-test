@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using App.Scripts.Infrastructure.GameCore.Models;
+using System.Collections.Generic;
 using System.Linq;
-using App.Scripts.Infrastructure.GameCore.Models;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.ChessSelection

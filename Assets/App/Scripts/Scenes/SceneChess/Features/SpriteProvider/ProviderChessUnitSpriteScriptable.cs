@@ -1,8 +1,8 @@
+using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
+using App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
-using App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.SpriteProvider

@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using App.Scripts.Infrastructure.GameCore.Commands.SwitchLevel;
 using App.Scripts.Infrastructure.GameCore.States.SetupState;
 using App.Scripts.Infrastructure.LevelSelection;
@@ -7,6 +5,8 @@ using App.Scripts.Libs.StateMachine;
 using App.Scripts.Scenes.SceneFillwords.Features.FillwordModels;
 using App.Scripts.Scenes.SceneFillwords.Features.FillwordModels.View.ViewGridLetters;
 using App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel;
+using System;
+using System.Threading.Tasks;
 
 namespace App.Scripts.Scenes.SceneFillwords.States.Setup
 {
@@ -27,20 +27,20 @@ namespace App.Scripts.Scenes.SceneFillwords.States.Setup
             _viewGridLetters = viewGridLetters;
             _containerGrid = containerGrid;
             // better to pass through dependencies, but it is forbidden to change the signature
-            _commandSwitchLevelState = new CommandSwitchLevelState<StateSetupLevel>(_serviceLevelSelection, new GameStateMachine()); ;
+            _commandSwitchLevelState = new CommandSwitchLevelState<StateSetupLevel>(_serviceLevelSelection, new GameStateMachine());
         }
 
         public Task Process()
         {
             var model = _providerFillwordLevel.LoadModel(_serviceLevelSelection.CurrentLevelIndex);
 
-            while (model == null)
+            while (model is null)
             {
                 _commandSwitchLevelState.Execute(1);
 
                 if (_serviceLevelSelection.CurrentLevelIndex > _serviceLevelSelection.TotalLevelCount)
                     throw new Exception();
-                
+
                 model = _providerFillwordLevel.LoadModel(_serviceLevelSelection.CurrentLevelIndex);
             }
 

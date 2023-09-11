@@ -1,4 +1,4 @@
-﻿namespace Assets.App.Scripts.Consts.Fillwords
+﻿namespace Assets.App.Scripts.Scenes.SceneFillwords.Consts
 {
     public class FillwordsResourcePaths
     {

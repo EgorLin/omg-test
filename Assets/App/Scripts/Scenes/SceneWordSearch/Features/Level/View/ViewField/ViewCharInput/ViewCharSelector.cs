@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using App.Scripts.Libs.Factory;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewCharInput.Animator;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewLetter;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewCharInput
@@ -18,7 +18,7 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewC
 
         [SerializeField] private float RadiusHeightPercent = 0.5f;
 
-        [SerializeField] [Range(0, 1)] private float ItemSizePercent = 0.2f;
+        [SerializeField][Range(0, 1)] private float ItemSizePercent = 0.2f;
 
         private readonly List<ViewLetterButton> buttons = new();
         private IFactory<ViewLetterButton, char> _factory;

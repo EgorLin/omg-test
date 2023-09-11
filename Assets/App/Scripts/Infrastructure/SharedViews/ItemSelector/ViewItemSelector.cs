@@ -1,6 +1,6 @@
+using App.Scripts.Libs.Factory;
 using System;
 using System.Collections.Generic;
-using App.Scripts.Libs.Factory;
 using UnityEngine;
 
 namespace App.Scripts.Infrastructure.SharedViews.ItemSelector

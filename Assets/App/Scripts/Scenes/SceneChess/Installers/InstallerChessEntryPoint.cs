@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using App.Scripts.Infrastructure.GameCore.Controllers;
 using App.Scripts.Infrastructure.GameCore.States;
 using App.Scripts.Infrastructure.GameCore.States.SetupState;
@@ -17,6 +16,7 @@ using App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator;
 using App.Scripts.Scenes.SceneChess.Features.ProviderChessLevel;
 using App.Scripts.Scenes.SceneChess.States.SetupLevel;
 using App.Scripts.Scenes.SceneChess.Systems;
+using System.Collections.Generic;
 
 namespace App.Scripts.Scenes.SceneChess.Installers
 {

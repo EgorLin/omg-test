@@ -1,9 +1,9 @@
-using System;
+using App.Scripts.Libs.FileManager;
 using App.Scripts.Scenes.SceneFillwords.Features.FillwordModels;
+using Assets.App.Scripts.Scenes.SceneFillwords.Consts;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Text;
-using Assets.App.Scripts.Consts.Fillwords;
 
 namespace App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel
 {
@@ -13,77 +13,92 @@ namespace App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel
         {
             try
             {
-                var wordsAndLettersNumbers = GetWordsAndLettersNumbers(index, FillwordsResourcePaths.levels);
+                var wordAndLettersPairsIndexes = GetWordsAndLettersIndexes(index, FillwordsResourcePaths.levels);
 
-                var lettersList = GetLettersList(wordsAndLettersNumbers, FillwordsResourcePaths.wordsList);
-               
-                var vectorSize = Convert.ToInt32(Math.Sqrt(lettersList.Length));
-                Vector2Int size = new Vector2Int(vectorSize, vectorSize);
+                int totalCountLetters = 0;
+                foreach (var word in wordAndLettersPairsIndexes)
+                {
+                    totalCountLetters += word.Value.Length;
+                }
+                var vectorSize = Convert.ToInt32(Math.Sqrt(totalCountLetters));
+                var indexAndLetterPairs = GetIndexAndLetterPairs(wordAndLettersPairsIndexes, FillwordsResourcePaths.wordsList, vectorSize * vectorSize);
 
-                var gridFillWords = new GridFillWords(size);
-                FillGrid(lettersList, gridFillWords);
+                var gridSize = new Vector2Int(vectorSize, vectorSize);
+
+                var gridFillWords = new GridFillWords(gridSize);
+                FillGrid(indexAndLetterPairs, gridFillWords);
 
                 return gridFillWords;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
+                Debug.Log("Failed to load " + index + " level");
                 return null;
             }
         }
 
-        private Dictionary<int, int[]> GetWordsAndLettersNumbers(int levelIndex, string path)
+        private Dictionary<int, int[]> GetWordsAndLettersIndexes(int levelIndex, string path)
         {
-            var wordsNumbers = new Dictionary<int, int[]>();
+            var wordsAndLettersPairIndexes = new Dictionary<int, int[]>();
             var file = Resources.Load<TextAsset>(path);
 
-            var lines = file.text.Split('\n');
-            var line = lines[levelIndex];
+            var lines = FileManager.GetFile<TextAsset>(path).text.Split('\n');
+            var level = lines[levelIndex];
 
-            var values = line.Split(' ');
-            for (var j = 0; j < values.Length; j += 2)
+            var wordsAndLettersIndexes = level.Split(' ');
+            var countElementsToTake = 2;
+            for (var j = 0; j < wordsAndLettersIndexes.Length; j += countElementsToTake)
             {
-                var wordNumber = int.Parse(values[j]);
+                var wordIndex = int.Parse(wordsAndLettersIndexes[j]);
                 var lettersList = Array.ConvertAll(
-                        values[j + 1].Split(';'),
-                        s => int.Parse(s)
+                        wordsAndLettersIndexes[j + 1].Split(';'),
+                        letter => int.Parse(letter)
                     );
-                wordsNumbers.Add(wordNumber, lettersList);
+                wordsAndLettersPairIndexes.Add(wordIndex, lettersList);
             }
-            return wordsNumbers;
+            return wordsAndLettersPairIndexes;
         }
 
-        private string GetLettersList(Dictionary<int, int[]> wordsAndLettersNumbers, string path)
+        private Dictionary<int, char> GetIndexAndLetterPairs(Dictionary<int, int[]> wordAndLettersPairsIndexes, string path, int countCells)
         {
-            var wordsList = new StringBuilder();
-            var file = Resources.Load<TextAsset>(path);
+            var indexAndLetterPairs = new Dictionary<int, char>();
 
-            var wordsListParsed = file.text.Split('\n');
-            foreach (KeyValuePair<int, int[]> numberAndLettersWordPair in wordsAndLettersNumbers)
+            var wordListParsed = FileManager.GetFile<TextAsset>(path).text.Split('\n');
+            foreach (KeyValuePair<int, int[]> wordAndLettersPair in wordAndLettersPairsIndexes)
             {
-                string word = wordsListParsed[numberAndLettersWordPair.Key];
+                if (wordAndLettersPair.Key >= wordListParsed.Length)
+                    throw new Exception("Index of looking for word is greater than list of words");
 
-                foreach (int letterNumber in numberAndLettersWordPair.Value)
+                string originalWord = wordListParsed[wordAndLettersPair.Key].Trim();
+                if (originalWord.Length != wordAndLettersPair.Value.Length)
+                    throw new Exception("Count of indexes and word length are not equal");
+
+                for (int i = 0; i < wordAndLettersPair.Value.Length; i++)
                 {
-                    wordsList.Append(word[letterNumber]);
+                    var indexPositionInGrid = wordAndLettersPair.Value[i];
+                    if (indexPositionInGrid >= countCells)
+                        throw new Exception("The index of cell for letter is greater than the count of cells");
+                    if (!indexAndLetterPairs.TryAdd(indexPositionInGrid, originalWord[i]))
+                        throw new Exception("The index of position already exists");
                 }
             }
 
-            return wordsList.ToString();
+            var areLettersAndCellsEqual = countCells == indexAndLetterPairs.Count;
+            if (!areLettersAndCellsEqual)
+                throw new Exception("Number of cells are not equal to number of letters");
+
+            return indexAndLetterPairs;
         }
 
-        private GridFillWords FillGrid(string fillFrom, GridFillWords grid)
+        private GridFillWords FillGrid(Dictionary<int, char> indexAndLetterPairs, GridFillWords grid)
         {
-            var currentLetterNumber = 0;
+            var currentCellNumber = 0;
             for (var i = 0; i < grid.Size.x; i++)
             {
                 for (var j = 0; j < grid.Size.y; j++)
                 {
-                    if (currentLetterNumber >= fillFrom.Length)
-                    {
-                        throw new Exception("Letters more than cells");
-                    }
-                    var c = new CharGridModel(fillFrom[currentLetterNumber]);
+                    var c = new CharGridModel(indexAndLetterPairs[currentCellNumber++]);
                     grid.Set(i, j, c);
-                    currentLetterNumber++;
                 }
             }
             return grid;

@@ -1,9 +1,9 @@
-using System;
-using System.Threading.Tasks;
 using App.Scripts.Infrastructure.SharedViews.Animator;
 using App.Scripts.Libs.TweenHelper;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewLetter;
 using DG.Tweening;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneFillwords.Features.FillwordModels.View.ViewGridLetters
@@ -22,12 +22,12 @@ namespace App.Scripts.Scenes.SceneFillwords.Features.FillwordModels.View.ViewGri
             var perLetterDelay = config.durationShow / (height * width);
             float offset = 0;
             for (var i = 0; i < height; i++)
-            for (var j = 0; j < width; j++)
-            {
-                var view = gridViews[i][j];
-                anim.Insert(offset, AnimateShowLetter(view));
-                offset += perLetterDelay;
-            }
+                for (var j = 0; j < width; j++)
+                {
+                    var view = gridViews[i][j];
+                    anim.Insert(offset, AnimateShowLetter(view));
+                    offset += perLetterDelay;
+                }
 
             return StartAnimation(anim).Await();
         }

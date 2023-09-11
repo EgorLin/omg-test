@@ -1,5 +1,5 @@
-using System.Threading.Tasks;
 using DG.Tweening;
+using System.Threading.Tasks;
 
 namespace App.Scripts.Libs.TweenHelper
 {

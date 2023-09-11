@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using App.Scripts.Infrastructure.GameCore.Commands.SwitchLevel;
 using App.Scripts.Infrastructure.GameCore.Controllers;
 using App.Scripts.Infrastructure.GameCore.States;
@@ -18,6 +17,7 @@ using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewCharI
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewFieldWord;
 using App.Scripts.Scenes.SceneWordSearch.States;
 using App.Scripts.Scenes.SceneWordSearch.States.SetupLevel.Handlers;
+using System.Collections.Generic;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Installers
 {
@@ -62,7 +62,7 @@ namespace App.Scripts.Scenes.SceneWordSearch.Installers
                 commandSwitchLevel));
 
             gameSystems.AddSystems(container.GetServices<ISystem>());
-            
+
             var stateProcessGame = new StateProcessGame(gameSystems);
             stateMachine.AddState(stateProcessGame);
 

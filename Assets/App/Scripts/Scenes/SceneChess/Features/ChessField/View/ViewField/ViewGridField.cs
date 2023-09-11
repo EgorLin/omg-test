@@ -65,12 +65,12 @@ namespace App.Scripts.Scenes.SceneChess.Features.ChessField.View.ViewField
         private void ClearGrid()
         {
             for (var i = 0; i < GridCellSize.y; i++)
-            for (var j = 0; j < GridCellSize.x; j++)
-            {
-                var view = GetViewAt(i, j);
-                view.Remove();
-                SetViewAt(i, j, null);
-            }
+                for (var j = 0; j < GridCellSize.x; j++)
+                {
+                    var view = GetViewAt(i, j);
+                    view.Remove();
+                    SetViewAt(i, j, null);
+                }
 
             GridCellSize = Vector2Int.zero;
         }
@@ -106,8 +106,8 @@ namespace App.Scripts.Scenes.SceneChess.Features.ChessField.View.ViewField
 
         public Vector2Int PositionToCell(Vector3 worldPosition)
         {
-            var i = (int) (worldPosition.y / CellSize.y);
-            var j = (int) (worldPosition.x / CellSize.x);
+            var i = (int)(worldPosition.y / CellSize.y);
+            var j = (int)(worldPosition.x / CellSize.x);
 
             return new Vector2Int(j, i);
         }

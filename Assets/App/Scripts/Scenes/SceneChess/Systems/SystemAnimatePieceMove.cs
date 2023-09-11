@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Libs.Systems;
+﻿using App.Scripts.Libs.Systems;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.View.ViewField;
 using App.Scripts.Scenes.SceneChess.Features.GridNavigation;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Systems

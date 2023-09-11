@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
+﻿using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation

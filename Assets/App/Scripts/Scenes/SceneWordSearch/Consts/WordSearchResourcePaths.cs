@@ -1,4 +1,4 @@
-﻿namespace Assets.App.Scripts.Consts.WordSearch
+﻿namespace Assets.App.Scripts.Scenes.SceneWordSearch.Consts
 {
     public class WordSearchResourcePaths
     {
@@ -7,6 +7,6 @@
         public static string GetLevelByIndex(int levelIndex)
         {
             return _path + levelIndex;
-        } 
+        }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using App.Scripts.Scenes.SceneChess.Features.ChessField.GridMatrix;
+﻿using App.Scripts.Scenes.SceneChess.Features.ChessField.GridMatrix;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
-using Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
+using Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUnitMoves;
 using Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
@@ -14,10 +14,11 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
         {
             try
             {
+                ChessUnitMoves.Initialize(grid.Size.x);
                 var currentPiece = grid.Get(from).PieceModel;
-                var unitMoves = new ChessUnitMoves(currentPiece.PieceType, currentPiece.Color);
+                var unitMoves = new ChessUnitMoves().Create(currentPiece.PieceType, currentPiece.Color);
 
-                var path = BFS(unitMoves.Movements, from, to, grid);
+                var path = BFS(unitMoves, from, to, grid);
 
                 return path;
             }
@@ -50,7 +51,8 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
             return visitedGrid;
         }
 
-        private List<Vector2Int> BFS(Dictionary<ChessUnitMoveDirection, List<Vector2Int>> unitMoves, Vector2Int start, Vector2Int destination, ChessGrid grid)
+        private List<Vector2Int> BFS(Dictionary<ChessUnitMoveDirection, List<Vector2Int>> unitMoves,
+            Vector2Int start, Vector2Int destination, ChessGrid grid)
         {
             var queue = new Queue<Vector2Int>();
             var parentRecords = new Dictionary<Vector2Int, Vector2Int>();
@@ -91,12 +93,8 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
                             break;
                         }
 
-                        if (!isVisited && isCellEmpty)
-                        {
-                            queue.Enqueue(posToCheck);
-                            parentRecords.Add(posToCheck, currentPos);
-                        }
-
+                        queue.Enqueue(posToCheck);
+                        parentRecords.Add(posToCheck, currentPos);
                         visitedGrid[posToCheck.x, posToCheck.y] = true;
                     }
                 }
@@ -108,7 +106,7 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
         {
             var path = new List<Vector2Int> { end };
 
-            var lastElement = path[path.Count - 1];
+            var lastElement = path[0];
             while (lastElement != start)
             {
                 var parent = parentConnections.GetValueOrDefault(lastElement, new Vector2Int());

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using App.Scripts.Infrastructure.GameCore.Commands.SwitchLevel;
 using App.Scripts.Infrastructure.GameCore.Controllers;
 using App.Scripts.Infrastructure.GameCore.States;
@@ -6,6 +5,7 @@ using App.Scripts.Infrastructure.GameCore.States.SetupState;
 using App.Scripts.Infrastructure.GameCore.Systems;
 using App.Scripts.Infrastructure.LevelSelection;
 using App.Scripts.Infrastructure.LevelSelection.ViewHeader;
+using App.Scripts.Libs.FileManager;
 using App.Scripts.Libs.Installer;
 using App.Scripts.Libs.ServiceLocator;
 using App.Scripts.Libs.StateMachine;
@@ -15,11 +15,17 @@ using App.Scripts.Scenes.SceneFillwords.Features.FillwordModels.View.ViewGridLet
 using App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel;
 using App.Scripts.Scenes.SceneFillwords.States;
 using App.Scripts.Scenes.SceneFillwords.States.Setup;
+using System.Collections.Generic;
 
 namespace App.Scripts.Scenes.SceneFillwords.Installers
 {
     public class InstallerFillwordEntryPoint : MonoInstaller
     {
+        private void OnDestroy()
+        {
+            FileManager.ClearCache();
+        }
+
         public override void InstallBindings(ServiceContainer container)
         {
             var gameStateMachine = BuildStateMachine(container);
