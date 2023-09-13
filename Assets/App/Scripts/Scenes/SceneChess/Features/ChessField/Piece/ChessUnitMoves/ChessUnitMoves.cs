@@ -12,14 +12,14 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
     {
         private static readonly Dictionary<ChessUnitMoveDirection, Vector2Int> _directionMap = new()
         {
-            { ChessUnitMoveDirection.TOP, new Vector2Int(0, 1) },
-            { ChessUnitMoveDirection.TOP_RIGHT, new Vector2Int(1, 1) },
-            { ChessUnitMoveDirection.RIGHT, new Vector2Int(1, 0) },
-            { ChessUnitMoveDirection.BOTTOM_RIGHT, new Vector2Int(1, -1) },
-            { ChessUnitMoveDirection.BOTTOM, new Vector2Int(0, -1) },
-            { ChessUnitMoveDirection.BOTTOM_LEFT, new Vector2Int(-1, -1) },
-            { ChessUnitMoveDirection.LEFT, new Vector2Int(-1, 0) },
-            { ChessUnitMoveDirection.TOP_LEFT, new Vector2Int(-1, 1) },
+            { ChessUnitMoveDirection.Top, new Vector2Int(0, 1) },
+            { ChessUnitMoveDirection.TopRight, new Vector2Int(1, 1) },
+            { ChessUnitMoveDirection.Right, new Vector2Int(1, 0) },
+            { ChessUnitMoveDirection.BottomRight, new Vector2Int(1, -1) },
+            { ChessUnitMoveDirection.Bottom, new Vector2Int(0, -1) },
+            { ChessUnitMoveDirection.BottomLeft, new Vector2Int(-1, -1) },
+            { ChessUnitMoveDirection.Left, new Vector2Int(-1, 0) },
+            { ChessUnitMoveDirection.TopLeft, new Vector2Int(-1, 1) },
         };
         protected static int _maxCountSteps;
 

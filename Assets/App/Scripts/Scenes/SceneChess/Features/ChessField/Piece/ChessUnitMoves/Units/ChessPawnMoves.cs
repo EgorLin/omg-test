@@ -13,9 +13,9 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
         public ChessPawnMoves(ChessUnitColor color)
         {
             if (color == ChessUnitColor.Black)
-                _directions = new List<ChessUnitMoveDirection>() { { ChessUnitMoveDirection.BOTTOM } };
+                _directions = new List<ChessUnitMoveDirection>() { { ChessUnitMoveDirection.Bottom } };
             else
-                _directions = new List<ChessUnitMoveDirection>() { { ChessUnitMoveDirection.TOP } };
+                _directions = new List<ChessUnitMoveDirection>() { { ChessUnitMoveDirection.Top } };
         }
 
         public Dictionary<ChessUnitMoveDirection, List<Vector2Int>> GetMoves()

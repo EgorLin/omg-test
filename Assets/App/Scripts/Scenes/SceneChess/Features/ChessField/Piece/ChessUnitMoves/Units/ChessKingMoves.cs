@@ -8,8 +8,8 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
     {
         private readonly List<ChessUnitMoveDirection> _directions = new()
             {
-                { ChessUnitMoveDirection.TOP }, { ChessUnitMoveDirection.RIGHT },
-                { ChessUnitMoveDirection.BOTTOM }, { ChessUnitMoveDirection.LEFT },
+                { ChessUnitMoveDirection.Top }, { ChessUnitMoveDirection.Right },
+                { ChessUnitMoveDirection.Bottom }, { ChessUnitMoveDirection.Left },
             };
         private readonly int _countSteps = 1;
 
