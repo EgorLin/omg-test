@@ -36,7 +36,14 @@ namespace App.Scripts.Scenes.SceneFillwords.States.Setup
 
             while (model is null)
             {
-                _commandSwitchLevelState.Execute(1);
+                if (_serviceLevelSelection.CurrentLevelIndex > _serviceLevelSelection.PreviousLevelIndex)
+                {
+                    _commandSwitchLevelState.Execute(1);
+                }
+                else
+                {
+                    _commandSwitchLevelState.Execute(-1);
+                }
 
                 if (_serviceLevelSelection.CurrentLevelIndex > _serviceLevelSelection.TotalLevelCount)
                     throw new Exception();
@@ -46,6 +53,9 @@ namespace App.Scripts.Scenes.SceneFillwords.States.Setup
 
             _viewGridLetters.UpdateItems(model);
             _containerGrid.SetupGrid(model, _serviceLevelSelection.CurrentLevelIndex);
+
+            _serviceLevelSelection.PreviousLevelIndex = _serviceLevelSelection.CurrentLevelIndex;
+
             return Task.CompletedTask;
         }
     }

@@ -6,6 +6,7 @@ namespace App.Scripts.Infrastructure.LevelSelection
     {
         int CurrentLevelIndex { get; }
         int TotalLevelCount { get; }
+        int PreviousLevelIndex { get; set; }
         event Action OnSelectedLevelChanged;
         void UpdateSelectedLevel(int levelIndex);
     }

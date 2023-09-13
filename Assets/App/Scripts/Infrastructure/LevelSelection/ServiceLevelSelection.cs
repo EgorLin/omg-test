@@ -12,6 +12,7 @@ namespace App.Scripts.Infrastructure.LevelSelection
         {
             _configLevelSelection = configLevelSelection;
             CurrentLevelIndex = configLevelSelection.InitLevelIndex;
+            PreviousLevelIndex = configLevelSelection.InitLevelIndex - 1;
         }
 
         public int CurrentLevelIndex
@@ -23,6 +24,8 @@ namespace App.Scripts.Infrastructure.LevelSelection
                 OnSelectedLevelChanged?.Invoke();
             }
         }
+
+        public int PreviousLevelIndex { get; set; }
 
         public int TotalLevelCount
         {
