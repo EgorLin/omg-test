@@ -10,7 +10,7 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
 {
     public class ChessUnitMoves
     {
-        private readonly Dictionary<ChessUnitMoveDirection, Vector2Int> _directionMap = new()
+        private static readonly Dictionary<ChessUnitMoveDirection, Vector2Int> _directionMap = new()
         {
             { ChessUnitMoveDirection.TOP, new Vector2Int(0, 1) },
             { ChessUnitMoveDirection.TOP_RIGHT, new Vector2Int(1, 1) },
@@ -42,7 +42,7 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
             };
         }
 
-        protected Dictionary<ChessUnitMoveDirection, List<Vector2Int>> CreateMovesForUnit(
+        protected static Dictionary<ChessUnitMoveDirection, List<Vector2Int>> CreateMovesForUnit(
             List<ChessUnitMoveDirection> directions, int countStepsPerDirection, bool isKnight = false)
         {
             var unitMoves = new Dictionary<ChessUnitMoveDirection, List<Vector2Int>>();
@@ -62,7 +62,7 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
             return unitMoves;
         }
 
-        private List<Vector2Int> CreateDirectionMoves(Vector2Int direction, int countSteps)
+        private static List<Vector2Int> CreateDirectionMoves(Vector2Int direction, int countSteps)
         {
             var moves = new List<Vector2Int>();
 
@@ -75,7 +75,7 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
             return moves;
         }
 
-        private List<Vector2Int> CreateKnightDirectionMove(ChessUnitMoveDirection direction)
+        private static List<Vector2Int> CreateKnightDirectionMove(ChessUnitMoveDirection direction)
         {
             // _ _ 0 0 first bits mean signs for two numbers 
             // XOR of last two bits means will it be reversed or won't
@@ -95,12 +95,12 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
             return new List<Vector2Int>() { baseMove };
         }
 
-        private bool ParseNumberBitToBool(int number, int position)
+        private static bool ParseNumberBitToBool(int number, int position)
         {
             return GetBit(number, position) == 1;
         }
 
-        private int GetBit(int number, int position)
+        private static int GetBit(int number, int position)
         {
             return (number >> position) & 1;
         }
