@@ -13,9 +13,9 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
         };
         private readonly int _countSteps;
 
-        public ChessRookMoves()
+        public ChessRookMoves(int chessGridSize) : base(chessGridSize)
         {
-            _countSteps = _maxCountSteps;
+            _countSteps = chessGridSize - 1;
         }
 
         public Dictionary<ChessUnitMoveDirection, List<Vector2Int>> GetMoves()

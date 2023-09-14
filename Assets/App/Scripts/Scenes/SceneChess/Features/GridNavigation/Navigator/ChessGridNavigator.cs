@@ -15,12 +15,10 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
         {
             try
             {
-                ChessUnitMoves.Initialize(grid.Size.x);
-
                 var currentPiece = grid.Get(from)?.PieceModel;
                 ValidateCurrentPiece(currentPiece);
 
-                var unitMoves = new ChessUnitMoves().Create(currentPiece.PieceType, currentPiece.Color);
+                var unitMoves = new ChessUnitMoves(grid.Size.x).Create(currentPiece.PieceType, currentPiece.Color);
 
                 var path = BFS(unitMoves, from, to, grid);
 
@@ -38,33 +36,18 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
             return pos.x >= 0 && pos.x < gridSize.x && pos.y >= 0 && pos.y < gridSize.y;
         }
 
-        private bool[,] InitVisitedGrid(Vector2Int size)
-        {
-            var visitedGrid = new bool[size.x, size.y];
-
-            for (var i = 0; i < size.x; ++i)
-            {
-                for (var j = 0; j < size.y; ++j)
-                {
-                    visitedGrid[i, j] = false;
-                }
-            }
-
-            return visitedGrid;
-        }
-
         private List<Vector2Int> BFS(Dictionary<ChessUnitMoveDirection, List<Vector2Int>> unitMoves,
             Vector2Int start, Vector2Int destination, ChessGrid grid)
         {
             var queue = new Queue<Vector2Int>();
             var parentRecords = new Dictionary<Vector2Int, Vector2Int>();
-            var visitedGrid = InitVisitedGrid(grid.Size);
+            var visitedGrid = new bool[grid.Size.x, grid.Size.y];
 
             visitedGrid[start.x, start.y] = true;
 
             queue.Enqueue(start);
 
-            while (queue.Count != 0)
+            while (queue.Count > 0)
             {
                 var currentPos = queue.Dequeue();
 
@@ -73,22 +56,17 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
                     return GetBacktrace(parentRecords, start, destination);
                 }
 
-                foreach (var (direction, moves) in unitMoves)
+                foreach (var (_, moves) in unitMoves)
                 {
                     foreach (var move in moves)
                     {
                         var posToCheck = currentPos + move;
-                        if (!IsInsideGrid(posToCheck, grid.Size))
+                        if (!IsInsideGrid(posToCheck, grid.Size) || visitedGrid[posToCheck.x, posToCheck.y])
                         {
                             continue;
                         }
 
-                        var isVisited = visitedGrid[posToCheck.x, posToCheck.y];
-                        if (isVisited)
-                        {
-                            continue;
-                        }
-
+                        // if it's not empty, then it doesn't make any sense to check positions in that direction
                         var isCellEmpty = grid.Get(posToCheck) is null;
                         if (!isCellEmpty)
                         {

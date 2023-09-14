@@ -2,6 +2,8 @@ using App.Scripts.Libs.Factory;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.Models.Level;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
 {
@@ -11,6 +13,7 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
         {
             try
             {
+                ValidateInput(value);
                 var levelModel = new LevelModel
                 {
                     LevelNumber = levelNumber,
@@ -22,7 +25,7 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
             }
             catch (Exception e)
             {
-                UnityEngine.Debug.LogError(e.Message);
+                Debug.Log($"Error creating LevelModel: {e.Message}");
                 return null;
             }
         }
@@ -78,17 +81,15 @@ namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.BuilderLevelModel
 
         private List<char> GetListOfChars(Dictionary<char, int> dictionary)
         {
-            var listOfChars = new List<char>();
+            return dictionary.SelectMany(pair => Enumerable.Repeat(pair.Key, pair.Value)).ToList();
+        }
 
-            foreach (var (letter, frequency) in dictionary)
+        private void ValidateInput(LevelInfo value)
+        {
+            if (value == null || value.words == null)
             {
-                for (var i = 0; i < frequency; i++)
-                {
-                    listOfChars.Add(letter);
-                }
+                throw new ArgumentNullException("value", "LevelInfo or words list cannot be null.");
             }
-
-            return listOfChars;
         }
     }
 }

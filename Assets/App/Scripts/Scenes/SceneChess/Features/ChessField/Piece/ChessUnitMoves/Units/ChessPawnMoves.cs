@@ -10,7 +10,7 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
         private readonly List<ChessUnitMoveDirection> _directions;
         private readonly int _countSteps = 1;
 
-        public ChessPawnMoves(ChessUnitColor color)
+        public ChessPawnMoves(int chessGridSize, ChessUnitColor color) : base(chessGridSize)
         {
             if (color == ChessUnitColor.Black)
                 _directions = new List<ChessUnitMoveDirection>() { { ChessUnitMoveDirection.Bottom } };

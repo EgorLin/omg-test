@@ -21,23 +21,24 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
             { ChessUnitMoveDirection.Left, new Vector2Int(-1, 0) },
             { ChessUnitMoveDirection.TopLeft, new Vector2Int(-1, 1) },
         };
-        protected static int _maxCountSteps;
 
-        public static void Initialize(int chessGridSize)
+        protected int _chessGridSize;
+
+        public ChessUnitMoves(int chessGridSize)
         {
-            _maxCountSteps = chessGridSize - 1;
+            _chessGridSize = chessGridSize;
         }
 
         public Dictionary<ChessUnitMoveDirection, List<Vector2Int>> Create(ChessUnitType type, ChessUnitColor color)
         {
             return type switch
             {
-                ChessUnitType.Pon => new ChessPawnMoves(color).GetMoves(),
-                ChessUnitType.King => new ChessKingMoves().GetMoves(),
-                ChessUnitType.Queen => new ChessQueenMoves().GetMoves(),
-                ChessUnitType.Rook => new ChessRookMoves().GetMoves(),
-                ChessUnitType.Knight => new ChessKnightMoves().GetMoves(),
-                ChessUnitType.Bishop => new ChessBishopMoves().GetMoves(),
+                ChessUnitType.Pon => new ChessPawnMoves(_chessGridSize, color).GetMoves(),
+                ChessUnitType.King => new ChessKingMoves(_chessGridSize).GetMoves(),
+                ChessUnitType.Queen => new ChessQueenMoves(_chessGridSize).GetMoves(),
+                ChessUnitType.Rook => new ChessRookMoves(_chessGridSize).GetMoves(),
+                ChessUnitType.Knight => new ChessKnightMoves(_chessGridSize).GetMoves(),
+                ChessUnitType.Bishop => new ChessBishopMoves(_chessGridSize).GetMoves(),
                 _ => throw new ArgumentException("Invalid ChessUnitType provided."),
             };
         }

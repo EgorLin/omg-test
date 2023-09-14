@@ -14,7 +14,7 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
             };
         private readonly int _countSteps = 1;
 
-        public ChessKnightMoves()
+        public ChessKnightMoves(int chessGridSize) : base(chessGridSize)
         {
         }
 

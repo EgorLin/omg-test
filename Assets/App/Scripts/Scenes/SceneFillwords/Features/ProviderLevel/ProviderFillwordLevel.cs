@@ -31,10 +31,9 @@ namespace App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel
             }
         }
 
-        private Dictionary<int, int[]> GetWordsAndLettersIndexes(int levelIndex, string path)
+        internal Dictionary<int, int[]> GetWordsAndLettersIndexes(int levelIndex, string path)
         {
             var wordsAndLettersPairIndexes = new Dictionary<int, int[]>();
-            var file = Resources.Load<TextAsset>(path);
 
             var lines = FileManager.GetFile<TextAsset>(path).text.Split('\n');
             var level = lines[levelIndex];
