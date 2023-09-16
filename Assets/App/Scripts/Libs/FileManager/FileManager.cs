@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -22,12 +21,8 @@ namespace App.Scripts.Libs.FileManager
 
         private static Object CacheFile(string path)
         {
-            Object data;
-            try
-            {
-                data = Resources.Load(path);
-            }
-            catch (Exception)
+            Object? data = Resources.Load(path);
+            if (data is null)
             {
                 return null;
             }

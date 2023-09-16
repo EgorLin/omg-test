@@ -24,7 +24,7 @@ namespace App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel
 
                 return gridFillWords;
             }
-            catch (Exception)
+            catch
             {
                 Debug.Log($"Failed to load {index} level");
                 return null;
