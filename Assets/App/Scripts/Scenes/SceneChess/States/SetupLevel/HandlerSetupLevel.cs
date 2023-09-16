@@ -1,9 +1,9 @@
-﻿using App.Scripts.Infrastructure.GameCore.States.SetupState;
+﻿using System.Threading.Tasks;
+using App.Scripts.Infrastructure.GameCore.States.SetupState;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.Container;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.GridMatrix;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
 using App.Scripts.Scenes.SceneChess.Features.ProviderChessLevel;
-using System.Threading.Tasks;
 
 namespace App.Scripts.Scenes.SceneChess.States.SetupLevel
 {

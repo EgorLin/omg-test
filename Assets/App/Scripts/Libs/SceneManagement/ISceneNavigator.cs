@@ -1,5 +1,5 @@
-using App.Scripts.Libs.SceneManagement.Config;
 using System.Collections.Generic;
+using App.Scripts.Libs.SceneManagement.Config;
 
 namespace App.Scripts.Libs.SceneManagement
 {

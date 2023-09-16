@@ -10,7 +10,7 @@ namespace App.Scripts.Infrastructure.SceneManagement.Controllers
         private readonly ISceneNavigator _sceneNavigator;
         private readonly IViewItemSelector<SceneInfo> _viewItemSelector;
 
-        public ControllerInitNavigator(ISceneNavigator sceneNavigator, IViewItemSelector<SceneInfo> viewItemSelector)
+        public ControllerInitNavigator(ISceneNavigator sceneNavigator,  IViewItemSelector<SceneInfo> viewItemSelector)
         {
             _sceneNavigator = sceneNavigator;
             _viewItemSelector = viewItemSelector;

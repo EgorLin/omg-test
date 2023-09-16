@@ -1,9 +1,9 @@
+using System.Threading.Tasks;
 using App.Scripts.Infrastructure.GameCore.States.SetupState;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.Container;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.GridMatrix;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.View.ContainerUnits;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.View.ViewField;
-using System.Threading.Tasks;
 
 namespace App.Scripts.Scenes.SceneChess.States.SetupLevel
 {

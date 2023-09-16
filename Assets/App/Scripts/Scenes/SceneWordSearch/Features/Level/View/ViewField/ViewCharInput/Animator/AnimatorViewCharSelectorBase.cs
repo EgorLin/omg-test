@@ -1,7 +1,8 @@
-using App.Scripts.Infrastructure.SharedViews.Animator;
-using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewLetter;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using App.Scripts.Infrastructure.SharedViews.Animator;
+using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewLetter;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewCharInput.Animator
 {

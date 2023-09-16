@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using App.Scripts.Libs.BaseView;
 using App.Scripts.Libs.Factory;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewLetter;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewFieldWord

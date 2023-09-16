@@ -1,7 +1,7 @@
-﻿using App.Scripts.Scenes.SceneChess.Features.ChessField.Execeptions;
-using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using App.Scripts.Scenes.SceneChess.Features.ChessField.Execeptions;
+using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.ChessField.GridMatrix

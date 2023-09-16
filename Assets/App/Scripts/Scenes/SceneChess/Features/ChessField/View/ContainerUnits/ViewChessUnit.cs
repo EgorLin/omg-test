@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using App.Scripts.Libs.BaseView;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.View.ContainerUnits.Animator;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.ChessField.View.ContainerUnits

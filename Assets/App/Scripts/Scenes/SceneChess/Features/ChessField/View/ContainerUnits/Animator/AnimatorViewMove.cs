@@ -1,7 +1,7 @@
-using App.Scripts.Infrastructure.SharedViews.Animator;
-using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using App.Scripts.Infrastructure.SharedViews.Animator;
+using DG.Tweening;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.ChessField.View.ContainerUnits.Animator

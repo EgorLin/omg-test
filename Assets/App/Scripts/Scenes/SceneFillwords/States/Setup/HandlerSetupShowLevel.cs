@@ -1,8 +1,8 @@
+using System.Threading.Tasks;
 using App.Scripts.Infrastructure.GameCore.States.SetupState;
 using App.Scripts.Infrastructure.LevelSelection.ViewHeader;
 using App.Scripts.Scenes.SceneFillwords.Features.FillwordModels;
 using App.Scripts.Scenes.SceneFillwords.Features.FillwordModels.View.ViewGridLetters;
-using System.Threading.Tasks;
 
 namespace App.Scripts.Scenes.SceneFillwords.States.Setup
 {

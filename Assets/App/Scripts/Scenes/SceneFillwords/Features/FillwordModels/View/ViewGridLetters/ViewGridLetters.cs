@@ -1,7 +1,7 @@
+using System.Threading.Tasks;
 using App.Scripts.Libs.BaseView;
 using App.Scripts.Libs.Factory;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewLetter;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,8 +72,8 @@ namespace App.Scripts.Scenes.SceneFillwords.Features.FillwordModels.View.ViewGri
             if (_gridViews is null) return;
 
             for (var i = 0; i < SizeCells.y; i++)
-                for (var j = 0; j < SizeCells.x; j++)
-                    _gridViews[i][j].Remove();
+            for (var j = 0; j < SizeCells.x; j++)
+                _gridViews[i][j].Remove();
         }
 
         public Task AnimateShow()

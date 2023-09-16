@@ -1,6 +1,6 @@
-﻿using App.Scripts.Infrastructure.SharedViews.Animator;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using App.Scripts.Infrastructure.SharedViews.Animator;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.ChessField.View.ContainerUnits.Animator

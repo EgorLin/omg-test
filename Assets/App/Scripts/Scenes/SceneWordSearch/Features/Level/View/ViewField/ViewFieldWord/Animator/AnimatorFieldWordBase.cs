@@ -1,6 +1,7 @@
-using App.Scripts.Infrastructure.SharedViews.Animator;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using App.Scripts.Infrastructure.SharedViews.Animator;
+using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewFieldWord.Animator
 {

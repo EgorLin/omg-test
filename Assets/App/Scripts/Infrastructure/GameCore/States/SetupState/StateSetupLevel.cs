@@ -1,6 +1,6 @@
+using System.Threading.Tasks;
 using App.Scripts.Libs.StateMachine;
 using App.Scripts.Libs.TaskExtensions;
-using System.Threading.Tasks;
 
 namespace App.Scripts.Infrastructure.GameCore.States.SetupState
 {

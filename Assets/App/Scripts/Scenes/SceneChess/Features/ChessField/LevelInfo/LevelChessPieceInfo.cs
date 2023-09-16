@@ -1,5 +1,5 @@
-﻿using App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
-using System;
+﻿using System;
+using App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Features.ChessField.LevelInfo

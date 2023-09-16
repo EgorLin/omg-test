@@ -1,8 +1,8 @@
+using System;
+using System.Threading.Tasks;
 using App.Scripts.Infrastructure.SharedViews.Animator;
 using App.Scripts.Libs.TweenHelper;
 using DG.Tweening;
-using System;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 

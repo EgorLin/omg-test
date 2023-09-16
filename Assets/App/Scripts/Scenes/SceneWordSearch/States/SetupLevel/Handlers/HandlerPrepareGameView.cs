@@ -1,10 +1,10 @@
+using System.Threading.Tasks;
 using App.Scripts.Infrastructure.GameCore.States.SetupState;
 using App.Scripts.Infrastructure.LevelSelection.ViewHeader;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.LevelContainer;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.Models.Level;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewCharInput;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewFieldWord;
-using System.Threading.Tasks;
 
 namespace App.Scripts.Scenes.SceneWordSearch.States.SetupLevel.Handlers
 {

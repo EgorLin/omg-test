@@ -1,10 +1,10 @@
-﻿using App.Scripts.Infrastructure.LevelSelection.ViewHeader;
+﻿using System;
+using App.Scripts.Infrastructure.LevelSelection.ViewHeader;
 using App.Scripts.Libs.Installer;
 using App.Scripts.Libs.ServiceLocator;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewCharInput;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewFieldWord;
 using App.Scripts.Scenes.SceneWordSearch.Features.Level.View.ViewField.ViewLetter;
-using System;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneWordSearch.Installers
@@ -38,7 +38,7 @@ namespace App.Scripts.Scenes.SceneWordSearch.Installers
             container.SetServiceSelf(viewFieldWords);
 
             container.SetServiceSelf(viewLevelHeader);
-
+            
             container.SetService<IDisposable, ViewCharSelector>(viewCharSelector);
             container.SetService<IDisposable, ViewFieldWords>(viewFieldWords);
             container.SetService<IDisposable, ViewLevelHeader>(viewLevelHeader);

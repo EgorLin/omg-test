@@ -1,9 +1,9 @@
-﻿using App.Scripts.Libs.Systems;
+﻿using System.Collections.Generic;
+using System.Linq;
+using App.Scripts.Libs.Systems;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.Container;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.View.ContainerUnits;
 using App.Scripts.Scenes.SceneChess.Features.ChessSelection;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace App.Scripts.Scenes.SceneChess.Systems

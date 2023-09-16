@@ -1,6 +1,6 @@
-using App.Scripts.Libs.ServiceLocator;
 using System.Collections;
 using System.Collections.Generic;
+using App.Scripts.Libs.ServiceLocator;
 using UnityEngine;
 
 namespace App.Scripts.Libs.Installer

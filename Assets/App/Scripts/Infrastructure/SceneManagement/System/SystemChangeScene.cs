@@ -33,7 +33,7 @@ namespace App.Scripts.Infrastructure.SceneManagement.System
             {
                 return;
             }
-
+            
             _sceneNavigator.LoadScene(_selectedScene.SceneKey);
             _selectedScene = null;
         }

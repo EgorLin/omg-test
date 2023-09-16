@@ -49,3 +49,7 @@
 - [Chess Unit Moves](/Assets/App/Scripts/Scenes/SceneChess/Features/ChessField/Piece/ChessUnitMoves)
 
 	Создана папка, содержащая класс с созданием движения фигур, класс и интерфейс для каждой фигуры
+
+- [System Animate Piece Move](/Assets/App/Scripts/Scenes/SceneChess/Systems/SystemAnimatePieceMove.cs)
+
+	Добавлен null checker
