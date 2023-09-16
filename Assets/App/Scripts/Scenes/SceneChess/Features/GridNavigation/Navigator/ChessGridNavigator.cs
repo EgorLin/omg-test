@@ -89,7 +89,7 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
             var lastElement = path[0];
             while (lastElement != start)
             {
-                var parent = parentConnections.GetValueOrDefault(lastElement, new Vector2Int());
+                var parent = parentConnections.GetValueOrDefault(lastElement);
                 path.Add(parent);
                 lastElement = path[^1];
             }
@@ -102,7 +102,7 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
 
         private void ValidateCurrentPiece(ChessPieceModel currentPiece)
         {
-            if (currentPiece == null)
+            if (currentPiece is null)
             {
                 throw new Exception("No piece found at the starting position.");
             }
