@@ -29,11 +29,12 @@ namespace App.Scripts.Scenes.SceneWordSearch.States.SetupLevel.Handlers
 
         public Task Process()
         {
-            FileManager.ClearCache();
             var levelInfo = _providerWordLevel.LoadLevelData(_serviceLevelSelection.CurrentLevelIndex);
 
             var levelModel = _factoryLevelModel.Create(levelInfo, _serviceLevelSelection.CurrentLevelIndex);
             _levelContainer.SetupLevel(levelModel);
+
+            FileManager.ClearCache();
 
             return Task.CompletedTask;
         }

@@ -3,6 +3,7 @@
 Перечисление дополнительных добавленных и измененных файлов
 
 ## Общее
+
 - [File Manager](/Assets/App/Scripts/Libs/FileManager/FileManager.cs)
 
 	Создан класс, который кеширует ассеты, предотвращая повторную загрузку
@@ -25,11 +26,19 @@
 
 	Добавлена функциональность пропуска невалидных уровней
 
+- [Installer Fillword Entry Point](/Assets/App/Scripts/Scenes/SceneFillwords/Installers/InstallerFillwordEntryPoint.cs)
+
+	Добавлена очистка кеша загруженных файлов
+
 ## Word Search
 
 - [Word Search Resource Paths](/Assets/App/Scripts/Scenes/SceneWordSearch/Consts/WordSearchResourcePaths.cs)
 
 	Создан класс содержащий пути файлов
+
+- [Handler Setup Level Model](/Assets/App/Scripts/Scenes/SceneWordSearch/States/SetupLevel/Handlers/HandlerSetupLevelModel.cs)
+
+	Добавлена очистка кеша загруженных файлов
 
 ## Scene Chess
 
