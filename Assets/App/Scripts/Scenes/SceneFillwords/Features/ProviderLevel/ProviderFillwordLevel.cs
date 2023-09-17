@@ -13,7 +13,7 @@ namespace App.Scripts.Scenes.SceneFillwords.Features.ProviderLevel
         {
             try
             {
-                var wordAndLettersPairsIndexes = GetWordsAndLettersIndexes(index, FillwordsResourcePaths.levels);
+                var wordAndLettersPairsIndexes = GetWordsAndLettersIndexes(index - 1, FillwordsResourcePaths.levels);
 
                 int totalCountLetters = CountTotalLetters(wordAndLettersPairsIndexes);
                 var vectorSize = Convert.ToInt32(Math.Sqrt(totalCountLetters));

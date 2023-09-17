@@ -38,15 +38,14 @@ namespace App.Scripts.Scenes.SceneFillwords.States.Setup
             {
                 if (_serviceLevelSelection.CurrentLevelIndex > _serviceLevelSelection.PreviousLevelIndex)
                 {
+                    if (_serviceLevelSelection.CurrentLevelIndex == _serviceLevelSelection.TotalLevelCount)
+                        throw new Exception();
                     _commandSwitchLevelState.Execute(1);
                 }
                 else
                 {
                     _commandSwitchLevelState.Execute(-1);
                 }
-
-                if (_serviceLevelSelection.CurrentLevelIndex > _serviceLevelSelection.TotalLevelCount)
-                    throw new Exception();
 
                 model = _providerFillwordLevel.LoadModel(_serviceLevelSelection.CurrentLevelIndex);
             }

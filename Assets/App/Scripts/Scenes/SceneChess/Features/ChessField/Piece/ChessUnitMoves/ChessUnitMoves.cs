@@ -29,11 +29,11 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
             _chessGridSize = chessGridSize;
         }
 
-        public Dictionary<ChessUnitMoveDirection, List<Vector2Int>> Create(ChessUnitType type, ChessUnitColor color)
+        public Dictionary<ChessUnitMoveDirection, List<Vector2Int>> Create(ChessUnitType type)
         {
             return type switch
             {
-                ChessUnitType.Pon => new ChessPawnMoves(_chessGridSize, color).GetMoves(),
+                ChessUnitType.Pon => new ChessPawnMoves(_chessGridSize).GetMoves(),
                 ChessUnitType.King => new ChessKingMoves(_chessGridSize).GetMoves(),
                 ChessUnitType.Queen => new ChessQueenMoves(_chessGridSize).GetMoves(),
                 ChessUnitType.Rook => new ChessRookMoves(_chessGridSize).GetMoves(),

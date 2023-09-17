@@ -1,4 +1,3 @@
-using App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
 using Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +6,14 @@ namespace Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUn
 {
     public class ChessPawnMoves : ChessUnitMoves, IChessUnitMovesProvider
     {
-        private readonly List<ChessUnitMoveDirection> _directions;
+        private readonly List<ChessUnitMoveDirection> _directions = new()
+            {
+                { ChessUnitMoveDirection.Top }, { ChessUnitMoveDirection.Bottom }
+            };
         private readonly int _countSteps = 1;
 
-        public ChessPawnMoves(int chessGridSize, ChessUnitColor color) : base(chessGridSize)
+        public ChessPawnMoves(int chessGridSize) : base(chessGridSize)
         {
-            if (color == ChessUnitColor.Black)
-                _directions = new List<ChessUnitMoveDirection>() { { ChessUnitMoveDirection.Bottom } };
-            else
-                _directions = new List<ChessUnitMoveDirection>() { { ChessUnitMoveDirection.Top } };
         }
 
         public Dictionary<ChessUnitMoveDirection, List<Vector2Int>> GetMoves()

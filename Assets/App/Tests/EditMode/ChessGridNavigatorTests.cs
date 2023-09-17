@@ -28,20 +28,6 @@ namespace Tests
         }
 
         [Test]
-        public void FindPath_InvalidStartPosition_ReturnsNull()
-        {
-            var start = new Vector2Int(2, 2);
-            var destination = new Vector2Int(2, 4);
-
-            var grid = new ChessGrid(new Vector2Int(8, 8));
-            var navigator = new ChessGridNavigator();
-
-            var path = navigator.FindPath(ChessUnitType.Pon, start, destination, grid);
-
-            Assert.IsNull(path);
-        }
-
-        [Test]
         public void FindPath_SameStartAndDestination_ReturnsEmptyPath()
         {
             var pieceType = ChessUnitType.Pon;

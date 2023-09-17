@@ -9,7 +9,7 @@ namespace Tests
         public void LoadModel_ValidIndex_ReturnsGridFillWords()
         {
             var provider = new ProviderFillwordLevel();
-            var validIndex = 0;
+            var validIndex = 1;
 
             var grid = provider.LoadModel(validIndex);
 

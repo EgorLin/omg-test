@@ -1,5 +1,4 @@
 ﻿using App.Scripts.Scenes.SceneChess.Features.ChessField.GridMatrix;
-using App.Scripts.Scenes.SceneChess.Features.ChessField.Piece;
 using App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
 using Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Piece.ChessUnitMoves;
 using Assets.App.Scripts.Scenes.SceneChess.Features.ChessField.Types;
@@ -15,10 +14,7 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
         {
             try
             {
-                var currentPiece = grid.Get(from)?.PieceModel;
-                ValidateCurrentPiece(currentPiece);
-
-                var unitMoves = new ChessUnitMoves(grid.Size.x).Create(currentPiece.PieceType, currentPiece.Color);
+                var unitMoves = new ChessUnitMoves(grid.Size.x).Create(unit);
 
                 var path = BFS(unitMoves, from, to, grid);
 
@@ -98,14 +94,6 @@ namespace App.Scripts.Scenes.SceneChess.Features.GridNavigation.Navigator
             path.Reverse();
 
             return path;
-        }
-
-        private void ValidateCurrentPiece(ChessPieceModel currentPiece)
-        {
-            if (currentPiece is null)
-            {
-                throw new Exception("No piece found at the starting position.");
-            }
         }
     }
 }
